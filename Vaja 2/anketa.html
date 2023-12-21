@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Vaja 3</title>
+        <link rel="stylesheet" href="skupni.css" />
+        <link rel="stylesheet" href="anketa.css" />
+
+    </head>
+    <body>
+        <header>
+            <h1>Kjarina spletna stran</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Domov</a></li>
+                    <li><a href="ponudba.html">Ponudba</a></li>
+                    <li><a href="anketa.html">Anketa</a></li>
+                    <li><a href="https://estudij.um.si">Vaje</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <h2>Anketa</h2>
+                <datalist id="kraji">
+                    <option value="Ljubljana">
+                    <option value="Maribor">
+                    <option value="Celje">
+                    <option value="Koper">
+                    <option value="Kranj">
+                </datalist>
+                <form  method="get">
+                            <label class="naslov" for="ime_priimek">Ime in priimek: </label>
+                            <input class="vnos"  type="text" id="ime_priimek" name="ime_priimek"><br>
+
+                            <label class="naslov"  for="kraj">Kraj: </label>
+                            <input class="vnos"  list="kraji" id="kraj" name="kraj"><br>
+                        
+                            <label class="naslov"  for="elektronska_p">Elektronska pošta: </label>
+                            <input class="vnos"  type="text" id="elektronska_p" name="elektronska_p"><br>
+
+                            <label >Tip vozila:</label>
+                            <label for="vozilo1" class="box_radio">
+                                <input type="radio" id="vozilo1" name ="tip_vozila" value="Kombilimuzina">
+                                Kombilimuzina
+                                <span class="check_radio"></span>
+                            </label>
+                            <label for="vozilo2" class="box_radio">
+                                <input type="radio" id="vozilo2" name ="tip_vozila" value="Limuzina">
+                                Limuzina
+                                <span class="check_radio"></span>
+                            </label>
+                            <label for="vozilo3" class="box_radio">
+                                <input type="radio" id="vozilo3" name ="tip_vozila" value="Enoprostorec">
+                                Enoprostorec
+                                <span class="check_radio"></span>
+                            </label>
+                            <label for="vozilo4" class="box_radio">
+                                <input type="radio" id="vozilo4" name ="tip_vozila" value="Karavan">
+                                Karavan
+                                <span class="check_radio"></span>
+                            </label>
+                            <label for="vozilo5" class="box_radio">
+                                <input type="radio" id="vozilo5" name ="tip_vozila" value="Terensko_vozilo">
+                                Terensko vozilo
+                                <span class="check_radio"></span>
+                            </label><br>
+
+
+                            <label >Priljubljene znamke:</label>
+                            <label class="box_checkbox" for="znamka1">
+                                <input type="checkbox" id="znamka1" name ="znamka" value="BNW">
+                                BMW
+                                <span class="check_checkbox"></span>
+                            </label>
+                            <label class="box_checkbox" for="znamka2">
+                                <input type="checkbox" id="znamka2" name ="znamka" value="AUDI">
+                                Audi
+                                <span class="check_checkbox"></span>
+                            </label>
+                            <label class="box_checkbox" for="znamka3">
+                                <input type="checkbox" id="znamka3" name ="znamka" value="VOLVO">
+                                <span class="check_checkbox"></span>
+                                Volvo
+                            </label>
+                            <label  class="box_checkbox" for="znamka4">
+                                <input type="checkbox" id="znamka4" name ="znamka" value="OPEL">
+                                <span class="check_checkbox"></span>
+                                Opel
+                            </label>
+                            <label class="box_checkbox" for="znamka5">
+                                <input  type="checkbox" id="znamka5" name ="znamka" value="VOLKSWAGEN">
+                                Volkswagen
+                                <span class="check_checkbox"></span>
+                            </label><br>
+
+                            <label   for="zelje" class="naslov">Želje:</label>
+                            <textarea class="vnos"  id="zelje" name="zelje" rows="10" cols="60"></textarea>
+
+                            <input class="naslov" id="poslji" type="submit" value="Pošlji">
+                </form>
+        </section>
+     </body>
+</html>

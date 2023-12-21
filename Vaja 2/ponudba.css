@@ -1,0 +1,35 @@
+section{
+    background-color:rgb(195,195,195) ;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+
+}
+.kartica{
+    max-height: 400px;
+    background-color: white;
+    width: 26%;
+    margin: auto;
+    margin-bottom: 2%;
+
+}
+.naslov{
+    max-height: 40px;
+    padding: 1%;
+    background-color:#333399;
+    color: white;
+
+}
+img{
+    height: 200px;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+
+}
+dl{
+    max-height: 160px;
+    margin-top: 0;
+    overflow: auto;
+
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #vnosi{
+                display:grid;
+                grid-template-columns: auto;
+                row-gap: 5px;
+                }
+            .pod_vnosi{
+                display: grid;
+                grid-template-columns: 150px 250px auto;
+                column-gap: 10px;
+            }
+            .izpis_vsi{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+    <form method="GET" action=""  onsubmit=" return ZadnjePreverjanje()">
+        <div id="vnosi"> 
+            <div id="user_cont"class="pod_vnosi">
+                <div>Uporabnisko ime:</div>
+                <input type="text" id="uporabnik" onchange="preveriUporabnika()">
+                <div class ="izpis_vsi" id="izpis"></div>
+            </div>
+            <div class="pod_vnosi">
+                <div>E-pošta:</div>
+                <input type="text" id="e_posta" onchange="email()">
+                <div class ="izpis_vsi"  id="eposta_izpis"></div>
+            </div>
+            <div class="pod_vnosi">
+                <div>Geslo:</div>
+                <input type="password" id="geslo" onchange="TestGesla()">
+                <div class ="izpis_vsi"  id="geslo_izpis"></div>
+            </div>
+            <div class="pod_vnosi">
+                <div>Ponovitev gesla:</div>
+                <input type="password" id="ponovitev_gesla" onchange="potrditev_gesla()">
+                <div class ="izpis_vsi"  id="geslo_ponovitev_izpis"></div>
+
+            </div>
+            <div class="pod_vnosi">
+                <div>Spol: </div>
+                <div>
+                    <label for = "zenski">Ženski</label>
+                    <input type="radio" id="zenski" name="spol"onchange ="IzbiraSpola()">
+                    <label for = "moski">Moški</label>
+                    <input type="radio" id="moski" name="spol" onchange ="IzbiraSpola()">
+                </div>
+                <div class ="izpis_vsi"  id="izpis_radio">Niste izbrali spola</div>
+            </div>
+            <div>
+                <input type="submit" value="Pošlji">
+                <div class ="izpis_vsi"  id="poslji_izpis"></div>
+            </div>
+        </div>
+    </form>
+        <script>
+            preveriUporabnika  = () =>{
+            let imena = ["hel1", "test2","wdym2","hello323", "nooo2"]
+            let cont = document.getElementById("izpis");
+            let uporabnik = document.getElementById("uporabnik").value;
+            let st_vnosa = uporabnik.length;
+            if(imena.includes(uporabnik)){
+                cont.innerHTML = "Uporabnisko ime ze obstaja";
+                return false;
+            }else{
+            if(st_vnosa >20){
+                cont.innerHTML = "Predolgo uporabnisko ime";
+                return false;
+            }else if(st_vnosa < 3){
+                cont.innerHTML = "Uporabnisko ime je prekratko";
+                return false;
+            }else{
+                cont.innerHTML = ""
+                return true;
+            }}
+        }
+        TestGesla =() =>{
+            let geslo = document.getElementById("geslo").value;
+            let dolzina = geslo.length;
+            let upper = false;
+            let down = false;
+            let stevka = false;
+            let geslo_izpis = document.getElementById("geslo_izpis");
+            geslo_izpis.innerHTML ="";
+            for (let i = 0; i < geslo.length; i++){
+                if(isNaN((geslo[i])) == false){
+                    stevka = true;
+                }else{
+                if(geslo[i] == geslo[i].toUpperCase()){
+                    upper = true}
+                if (geslo[i] == geslo[i].toLowerCase()){
+                    down = true}
+                }
+            }
+            if (dolzina >= 6){
+                if(stevka == false){
+                    geslo_izpis.innerHTML = "Geslo ne vsebuje stevilke!"
+                    return false;
+                }else{
+                    if(down == false){
+                        geslo_izpis.innerHTML  = "Geslo ne vsebuje male črrke!"
+                        return false;
+                    }else{
+                        if(upper == false){
+                            geslo_izpis.innerHTML  = "Geslo ne vsebuje velike črrke!"
+                            return false;
+                    }
+                }}
+            }else {
+                geslo_izpis.innerHTML = "Geslo je prekratko!"
+                return false;
+            }
+            return true;
+        }
+
+        email = () =>{
+                let eposta_izpis = document.getElementById("eposta_izpis");
+                let naslov = document.getElementById("e_posta").value;
+                var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //https://stackoverflow.com/questions/4640583/what-are-these-javascript-syntax-called-a-za-z0-9-a-za-z0-9
+
+                if (regex.test(naslov)) {
+                    return true;
+                } else {
+                    eposta_izpis.innerHTML = "Elektronski naslov ni veljaven."
+                    return false;
+                }
+
+        }
+        potrditev_gesla = () =>{
+            let izpis = document.getElementById("geslo_ponovitev_izpis");
+            let ponovitev_gesla = document.getElementById("ponovitev_gesla").value;
+            let geslo = document.getElementById("geslo").value;
+            if (geslo != ponovitev_gesla){
+                izpis.innerHTML = "Gesli se ne ujemata"
+                return false;
+            }
+
+        }
+        IzbiraSpola = () =>{
+            let spol = document.getElementsByName("spol");
+            let izpis = document.getElementById("izpis_radio");
+            for(let i = 0; i < spol.length; i++){
+                if(spol[i].checked){
+                    izpis.innerHTML = "";
+                    return true;
+                }
+        }return false;
+        }
+
+        ZadnjePreverjanje =() =>{
+            let testiranje = true;
+            if (preveriUporabnika() == false){
+                testiranje = false;
+            }else if(TestGesla()==false){
+                testiranje = false;
+            }else if(email()== false){
+                testiranje = false;
+            }else if(potrditev_gesla() == false){
+                testiranje  = false;
+            }else if(IzbiraSpola() == false){
+                testiranje = false;
+            }
+
+            if(testiranje==false){
+                document.getElementById("poslji_izpis").innerHTML = "Napaka prosim popravite!";
+                return false;
+            }else{
+                return true;
+
+            }
+        }
+        </script>
+    </body>
+
+</html>

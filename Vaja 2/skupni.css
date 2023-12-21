@@ -1,0 +1,69 @@
+@font-face {
+    font-family: MojFont;
+    src: url(OpenSans_Condensed-Regular.ttf);
+  }
+
+body {
+    background-color:#C3C3C3;
+    font-family: MojFont;
+    margin: 0;
+}
+
+header{
+    position: sticky; 
+    top: 0; 
+    width: 100%; 
+}
+
+h1{
+color:#333399;
+background-color:#FFCC33;
+margin-top: 0;
+margin-bottom: 0;
+text-align: center;
+padding: 1%;
+
+}
+nav {
+    background-color:#333399;
+}
+
+ul {
+    margin-top: 0;
+    padding: 0.6%;
+    height: 100%;
+
+}
+li {
+    display: inline;
+    margin-left: 2%;
+    padding: 0.6%;
+
+
+}
+a{
+    color:white;
+    text-decoration: none;
+    
+}
+li:hover{
+    background-color:#503095;
+    text-decoration: none;
+}
+h2 {
+    text-align: center;
+    background-color:#FFCC33;
+    color:#333399;
+    margin-top: 0;
+    padding: 1%;
+} 
+
+section{
+    max-width: 1000px;
+    width:100%;
+    margin: auto;
+    background-color: white;
+    /*border: 0.5px solid #000000;*/
+
+}
+

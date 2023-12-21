@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            	td{
+                    width: 32px;
+                    height: 32px;
+                    border: solid 1px gray;
+                    margin:0;
+                    padding:0;
+                }
+                table{
+                    background-image:url("sprite16.gif");
+                    margin:0;
+                    border-spacing: 0;
+                    border: solid 1px gray;
+
+                }
+                #main_table{
+                    margin-top:2%;
+                }
+
+        </style>
+
+    </head>
+    <body>
+        <table id="top_table">
+            <tr id="top_row"></tr>
+        </table>
+        <table id="main_table" ></table>
+
+
+
+        <script>
+            function izbira_slike(slika){
+                naslov_slike = slika;
+            }
+            function AddIcon(element){
+                element.style.backgroundImage = "url('"+naslov_slike+"')";
+            }
+
+            let st_stoplcev= 0;
+            let st_vrstic =  0;
+            while (st_stoplcev > 40 || st_stoplcev < 10){
+                st_stoplcev = Number(window.prompt("Prosim vnesite celo število med 10-40: "));
+            }
+            while (st_vrstic < 5 || st_vrstic > 30) {
+                st_vrstic = Number(window.prompt("Prosim vnesite celo število med 5-30: "));
+            }
+            let zgornja_tabela = document.getElementById("top_row")
+            for (let x = 1; x <= 16; x++) {
+                zgornja_tabela.innerHTML += `<td style='background-image:url("sprite${x}.gif")' onclick='izbira_slike("sprite${x}.gif")'></td>`;
+            }
+            let main_table = document.getElementById("main_table")
+            for (let i = 0; i < st_vrstic; i++) {
+                main_table.innerHTML += '<tr id="main_table_row' + i +'"></tr>';
+                let main_table_row =  document.getElementById('main_table_row' + i);
+                for ( let m = 0; m < st_stoplcev; m++) {
+                    main_table_row.innerHTML += '<td onclick="AddIcon(this)"></td>';
+            }
+        }    
+        </script>
+    </body>
+</html>
