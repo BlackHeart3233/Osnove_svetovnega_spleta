@@ -1,4 +1,10 @@
 <?php
+if(isset($_SESSION['username'])){
+	header("Location: index.php");
+	echo "<div>".$_SESSION['username']."</div>";
+}
+
+session_start();
 
 $users = array(
 	(object)array(
@@ -60,18 +66,52 @@ $articles = array(
 		"content"=>'<p style="margin-left:0cm; margin-right:0cm">Med <strong>26. in 28. majem 2020 bo v Hotelu City v Mariboru potekala 35. mednarodna konferenca IFIP SEC</strong> (International Conference on ICT Systems Security and Privacy Protection), zato vas vljudno vabimo k <strong>oddaji člankov za objavo</strong>. Organizator konference je Univerza v Mariboru, Fakulteta za elektrotehniko, računalništvo in informatiko, Inštitut za informatiko. Cilj konference IFIP SEC je združevanje raziskovalcev in strokovnjakov iz gospodarstva ter vladnih ustanov z namenom identifikacije in razprave o izzivih <strong>varnosti in zasebnosti informacijsko-komunikacijskih tehnologih</strong>.</p><p style="margin-left:0cm; margin-right:0cm">Vabimo vas k oddaji izvirnih del, ki opisujejo rezultate iz teorije in prakse varnosti in zasebnosti. Sprejeti članki bodo objavljeni v posebni izdaji <em>IFIP Advances in Information and Communication Technology (AICT) serij</em>, ki jih publicira Springer.</p><p style="margin-left:0cm; margin-right:0cm"><strong>Pomembni datumi:</strong></p><ul><li><u>1. december 2019</u> – oddaja člankov</li><li><u>12. februar 2020</u> – obvestilo o sprejetju člankov in priporočila</li><li><u>6. marec 2020</u> – oddaja končnega članka</li></ul><p style="margin-left:0cm; margin-right:0cm">Več informacij lahko najdete na: <a href="https://sec2020.um.si/call-for-papers/">https://sec2020.um.si/call-for-papers/</a> oz. na spletni strani <a href="https://sec2020.um.si/">https://sec2020.um.si/</a> ali pa nas kontaktirate na <a href="mailto:sec2020@um.si">sec2020@um.si</a>.</p><p style="margin-left:0cm; margin-right:0cm">IFIP SEC 2020 organizatorji</p>'
 	), 
 );
-
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="login.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
-        <div id="naslov">
-            <div>Novice</div>
-            <button type="button" ></button>
-        </div>
+        <nav class="navbar navbar-dark bg-primary">
+            <h2 id="naslov" class="nav-item">Novice</h2>
+            <a id="priijava" class="nav-item" style="color:white;text-decoration:none" href="login.php"> Prijava</a>
+       </nav>
+       <form class="mx-auto" action="login.php" method="POST" >
+            <div class="uporabnisko" id="input_1">
+                <label >Uporabnisko ime</label>
+                <input type="text" class="form-control"  placeholder="Uporabnisko ime" name="username">
+            </div>
+            <div class="geslo" id="input_2">
+                <label >Geslo</label>
+                <input type="text" class="form-control" placeholder="Geslo" name="geslo">
+            </div>
+            <button type="submit" class="btn btn-primary">Prijavi</button>
+        </form>
+        <?php
+            if (isset($_POST['geslo']) && isset($_POST['geslo'])) {
+                $geslo = $_POST['geslo'];
+                $username = $_POST['username'];
 
+                foreach ($users as $users){
+                    if($users->username == $username){
+                        $obstaja_username = true;
+                        if($users->password == $geslo){
+                            $geslo_pravilno = true;
+                            session_start();
+							$_SESSION["username"] = $users->username;
+							$_SESSION["activity"] = time();
+							echo "<div>". $_SESSION['username']. "</div>";
+							header("Location: index.php");
+                        }
+                    }
+                }
+                echo "<div style='color:red'> Napacno geslo ali pa username. Poskusite ponovno.</div>";
+            }
+
+        ?>
     </body>
 </html>

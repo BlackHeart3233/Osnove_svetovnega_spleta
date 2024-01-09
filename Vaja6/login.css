@@ -1,0 +1,33 @@
+nav{
+    color:white;
+}
+#naslov{
+    padding-left: 10px;
+}
+#priijava{
+    padding-right: 10px;
+}
+#input_1{
+    margin-bottom: 20px;
+}
+#input_2{
+    margin-bottom: 20px;
+}
+form{
+    width: 50%;
+    margin-top: 40px;
+}
+
+
+
+
+/*index.php*/
+.gumb{
+    margin-left: 20px;
+}
+
+/*article-php*/
+
+#izpis_novice{
+    margin-top: 100px;
+}
